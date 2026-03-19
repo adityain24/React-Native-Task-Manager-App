@@ -1,50 +1,101 @@
-# Welcome to your Expo app 👋
+# 📝 Todo App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A simple and clean **Todo App** built with **React Native** and **Expo**, designed to help users manage their daily tasks efficiently.
 
-## Get started
+The app allows users to **add tasks, mark them as complete, and persist their data** across sessions using **AsyncStorage** — meaning your tasks are always saved even after closing the app.
 
-1. Install dependencies
+---
 
+## 👨‍💻 Author
+
+**Aditya Shrivastava**
+- GitHub: [@adityain24](https://github.com/aditya.in24)
+
+---
+
+## 🙏 Mentor
+
+**Suryansh Singh** — Thank you for the guidance and support throughout this project!
+
+---
+
+## ✨ Features
+
+- ✅ Add new tasks quickly
+- ✔️ Mark tasks as complete or incomplete
+- 💾 Tasks are saved locally — persists even after closing the app
+- 🧹 Clean and minimal UI
+- 📱 Works on both Android and iOS
+
+---
+
+## 🛠️ Built With
+
+| Technology | Purpose |
+|---|---|
+| ⚛️ React Native | Building the mobile UI |
+| 📦 Expo | Running and testing the app |
+| 🗄️ AsyncStorage | Saving tasks locally on the device |
+| 🔷 TypeScript | Type safety and cleaner code |
+
+---
+
+## 📁 Project Structure
+
+```
+├── components/
+│   └── TaskItem.tsx        # Single task UI component
+├── screens/
+│   └── HomeScreen.tsx      # Main screen showing all tasks
+├── utils/
+│   └── storage.ts          # All AsyncStorage logic (getTasks, saveTasks)
+└── AddTask.tsx             # Component for adding a new task
+```
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+Make sure you have the following installed:
+- [Node.js](https://nodejs.org/)
+- [Expo CLI](https://docs.expo.dev/get-started/installation/)
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/todo-app.git
+   ```
+
+2. **Navigate to the project folder**
+   ```bash
+   cd todo-app
+   ```
+
+3. **Install dependencies**
    ```bash
    npm install
    ```
 
-2. Start the app
-
+4. **Start the app**
    ```bash
    npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+---
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## 📸 Screenshots
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
 
-## Get a fresh project
+![WhatsApp Image 2026-03-19 at 11 53 43 AM](https://github.com/user-attachments/assets/a52a1034-5d4b-4522-9627-38dbef48d45a)
 
-When you're ready, run:
+![WhatsApp Image 2026-03-19 at 11 53 43 AM (1)](https://github.com/user-attachments/assets/3189b0b9-4f7d-4e8d-91c7-9868a735cec4)
 
-```bash
-npm run reset-project
-```
+![WhatsApp Image 2026-03-19 at 11 53 43 AM (2)](https://github.com/user-attachments/assets/d7775dcb-53d4-43f5-bdb1-84ffcc5f8088)
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+---
 
-## Learn more
+## 📄 License
 
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+This project is open source and available under the [MIT License](LICENSE).
