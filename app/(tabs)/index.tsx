@@ -1,41 +1,57 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, FlatList, StyleSheet, ScrollView } from "react-native";
+import { View, Text, FlatList, StyleSheet } from "react-native";
 import { getTasks, saveTasks, Task } from "../utils/storage";
 import AddTask from "../../components/AddTask";
 import TaskItem from "../../components/TaskItem";
+import SearchBar from "@/components/SearchBar";
 
 export default function HomeScreen() {
   const [tasks, setTasks] = useState<Task[]>([]);
+  const [filteredTasks, setFilteredTasks] = useState<Task[]>([]); // ⭐ NEW
 
   useEffect(() => {
-    getTasks().then(setTasks);
+    getTasks().then((data) => {
+      setTasks(data);
+      setFilteredTasks(data); // ⭐ initial load
+    });
   }, []);
 
   const persist = (updated: Task[]) => {
     setTasks(updated);
+    setFilteredTasks(updated); // ⭐ keep search list synced
     saveTasks(updated);
   };
 
-  // CREATE karna hai toh title string ko use karke ek naya task object banao, persist karke existing tasks ke saath add karo id : Date.now().toString() se generate kar sakte ho, completed default false rahega.
   const handleAdd = (title: string) => {
     persist([...tasks, { id: Date.now().toString(), title, completed: false }]);
   };
 
-  // UPDATE : toggle karna hai toh map kar do, completed ko !completed replace kardo fir persist kar do
   const handleToggle = (id: string) => {
     persist(
       tasks.map((t) => (t.id === id ? { ...t, completed: !t.completed } : t)),
     );
   };
 
-  // UPDATE : edit title karna hai toh map kar do, title newTitle replace kardo fir persist kar do
   const handleEdit = (id: string, newTitle: string) => {
     persist(tasks.map((t) => (t.id === id ? { ...t, title: newTitle } : t)));
   };
 
-  // DELETE karna hai toh filter kar do aur persist kar do
   const handleDelete = (id: string) => {
     persist(tasks.filter((t) => t.id !== id));
+  };
+
+  // ⭐⭐⭐ SEARCH LOGIC (MAIN PART)
+  const handleSearch = (text: string) => {
+    if (text.trim() === "") {
+      setFilteredTasks(tasks);
+      return;
+    }
+
+    const filtered = tasks.filter((t) =>
+      t.title.toLowerCase().includes(text.toLowerCase()),
+    );
+
+    setFilteredTasks(filtered);
   };
 
   return (
@@ -46,15 +62,14 @@ export default function HomeScreen() {
       </Text>
 
       <AddTask onAdd={handleAdd} />
+
+      {/* ⭐ SEARCH BAR ADDED HERE */}
+      <SearchBar onSearch={handleSearch} />
+
       <FlatList
-        data={tasks}
-        //Added Header Component
-        ListHeaderComponent={<Text style={styles.userlist}>Task List</Text>}
-        //Added Empty Component
-        ListEmptyComponent={
-          <Text style={styles.empty}>No tasks found in this list</Text>
-        }
+        data={filteredTasks} // ⭐ IMPORTANT CHANGE
         keyExtractor={(item) => item.id}
+        ListEmptyComponent={<Text style={styles.empty}>No Tasks Found</Text>}
         renderItem={({ item }) => (
           <TaskItem
             task={item}
@@ -91,11 +106,5 @@ const styles = StyleSheet.create({
     color: "#aaa",
     marginTop: 60,
     fontSize: 15,
-  },
-  userlist: {
-    fontSize: 20,
-    fontWeight: "600",
-    marginLeft: 16,
-    marginBottom: 8,
   },
 });
