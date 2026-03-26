@@ -15,7 +15,7 @@ The app allows users to **add tasks, mark them as complete, and persist their da
 
 ## 🙏 Mentor
 
-**Mr. Suryansh Singh** — Thank you for the guidance and support throughout this project!
+**Mr. Suryansh Singh** 
 
 ---
 
